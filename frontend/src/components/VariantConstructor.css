@@ -1,12 +1,12 @@
 .constructor {
-  display: flex; /* Добавлено для горизонтального расположения колонок */
+  display: flex;
   align-items: flex-start;
 }
 
 /* Стили для списка тем */
 .constructor-topicList {
   flex: 2;
-  max-width: 70%; /* Установите максимальную ширину для ограничения */
+  max-width: 70%;
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 15px;

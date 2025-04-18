@@ -1,16 +1,16 @@
 import "./MainPage.css";
 import { Link } from "react-router-dom";
-import VariantConstructor from "./VariantConstructor";
+import VariantConstructor from "../components/VariantConstructor";
 
 const Main = ({ variantsList }) => {
   return (
-    <main className="main">
+    <>
       <section className="section">
         <h2>Тренировочные варианты</h2>
-        <ul>
+        <ul className="variants-list">
           {variantsList.map((v) => (
-            <li key={v.id}>
-              <Link to={`/test/${v.id}`}>{v.name}</Link>
+            <li className="variants-list__item" key={v.id}>
+              <Link to={`/test/${v.id}`} className="variants-list__link">{v.name}</Link>
             </li>
           ))}
         </ul>
@@ -26,7 +26,7 @@ const Main = ({ variantsList }) => {
         </p>
         <VariantConstructor />
       </section>
-    </main>
+    </>
   );
 };
 

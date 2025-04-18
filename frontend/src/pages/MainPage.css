@@ -1,39 +1,44 @@
-.main {
-  padding-top: 20px;
-}
-
-/* .constructor {
+.variants-list {
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 20px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+  /* justify-items: center; */
 }
 
-.constructor-topicList {
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 10px;
-  background-color: #f9f9f9;
+.variants-list__item {
+  text-align: center;
+  transition: transform 0.3s;
 }
 
-.constructor-buttons {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-}
-
-.submit {
-  padding: 10px 20px;
-  background-color: #77a1d3;
-  color: white;
-  border: none;
-  border-radius: 4px;
+.variants-list__item:hover {
+  transform: scale(1.05);
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
-.submit:hover {
-  background-color: #638dc0;
-} */
+.variants-list__link {
+  display: block;
+}
 
+@media (max-width: 1024px) {
+  .variants-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
 
-/* Класс для основной конструкции */
+@media (max-width: 768px) {
+  .variants-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .variants-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 320px) {
+  .variants-list {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,26 +1,31 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
-import fakeData from "./data";
-import "./App.css";
-import Header from "./components/Header.jsx";
-import Test from "./components/Test.jsx";
-import Main from "./components/Main.jsx";
+import fakeData from "./data/data.js";
+// import "./App.css";
+import Test from "./pages/TestPage.jsx";
+import Main from "./pages/MainPage.jsx";
 import { VariantProvider, useVariant } from "./contexts/VariantContext.jsx";
+import Layout from "./components/Layout.jsx";
 
 const AppRoutes = ({ variantsList }) => {
   const { customVariant } = useVariant();
 
   return (
     <Routes>
-      <Route path="/" element={<Main variantsList={variantsList} />} />
-      {variantsList.map((v) => (
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Main variantsList={variantsList} />} />
+        {variantsList.map((v) => (
+          <Route
+            key={v.id}
+            path={`test/${v.id}`}
+            element={<Test variant={v} />}
+          />
+        ))}
         <Route
-          key={v.id}
-          path={`/test/${v.id}`}
-          element={<Test variant={v} />}
+          path={"test/custom"}
+          element={<Test variant={customVariant} />}
         />
-      ))}
-      <Route path={"/test/custom"} element={<Test variant={customVariant} />} />
+      </Route>
       <Route path="*" element={<div>Page Not Found</div>} />
     </Routes>
   );
@@ -50,9 +55,7 @@ const App = () => {
   return (
     <VariantProvider>
       <BrowserRouter>
-        <Header />
         <AppRoutes variantsList={variantsList} />
-        <footer>Footer</footer>
       </BrowserRouter>
     </VariantProvider>
   );
