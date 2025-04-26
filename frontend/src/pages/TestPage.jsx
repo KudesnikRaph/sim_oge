@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import Question from "../components/Question";
-import "./TestPage.css";
+import { Link } from "react-router-dom";
 
 const secondsToHMS = (sec) => {
   const dateObj = new Date(sec * 1000);
@@ -18,28 +17,19 @@ const secondsToHMS = (sec) => {
 };
 
 const Test = ({ variant }) => {
-  const { id, questions } = variant;
+  const { name, questions } = variant;
 
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [answers, setAnswers] = useState({});
-  const [secondsLeft, setSecondsLeft] = useState(10800);
+  const [secondsLeft, setSecondsLeft] = useState(10); // 10800
   const timeLeft = secondsToHMS(secondsLeft);
 
   const handleAnswerChange = (id, value) => {
-    setAnswers((prev) => ({ ...prev, [id]: value }));
+    setAnswers((prevAnswers) => ({ ...prevAnswers, [id]: value }));
   };
 
-  // const handleTableChange = (id, idx, value) => {
-  //   setAnswers((prev) => {
-  //     const arr = prev[id] || [];
-  //     const newArr = [...arr];
-  //     newArr[idx] = value;
-  //     return { ...prev, [id]: newArr };
-  //   });
-  // };
-
   const handleSubmit = (e) => {
-    e?.preventDefault();
+    if (e) e.preventDefault();
     setIsSubmitted(true);
   };
 
@@ -48,13 +38,16 @@ const Test = ({ variant }) => {
       setIsSubmitted(true);
       return;
     }
+
     const timer = setInterval(() => {
-      setSecondsLeft((prev) => prev - 1);
+      setSecondsLeft((prevTime) => prevTime - 1);
     }, 1000);
+
     return () => clearInterval(timer);
   }, [secondsLeft]);
 
   return (
+    <>
     <main>
       <form onSubmit={handleSubmit}>
         <h2 className="name-variant">Вариант № {id}</h2>
@@ -159,8 +152,7 @@ const Test = ({ variant }) => {
           //     </div>
           //   </div>
           // ); */}
-
-        <button type="submit" disabled={isSubmitted} className="submit-button">
+        <button type="submit" disabled={isSubmitted}>
           Завершить тест
         </button>
       </form>

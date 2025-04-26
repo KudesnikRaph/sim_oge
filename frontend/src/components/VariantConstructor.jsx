@@ -15,11 +15,6 @@ const VariantConstructor = () => {
   const { handleCustomVariant } = useVariant();
   const navigate = useNavigate();
 
-  const shortQTopics = topics.filter(
-    (topic) => topic.questionsType === "short"
-  );
-  const longQTopics = topics.filter((topic) => topic.questionsType === "long");
-
   useEffect(() => {
     const dedupe = (arr) => {
       const map = new Map(arr.map((t) => [t.name, t]));
@@ -63,10 +58,11 @@ const VariantConstructor = () => {
   }, []);
 
   const handleChange = (id, e) => {
-    const questionCount = Math.max(0, Number(e.target.value));
-    if (!isNaN(questionCount))
-      setTopicQuestionCount((prev) => ({ ...prev, [id]: questionCount }));
+    const v = Math.max(0, Number(e.target.value));
+    if (!isNaN(v)) setTopicQuestionCount(p => ({ ...p, [id]: v }));
   };
+  const handleInc = id => setTopicQuestionCount(p => ({ ...p, [id]: (p[id]||0) + 1 }));
+  const handleDec = id => setTopicQuestionCount(p => ({ ...p, [id]: Math.max(0,(p[id]||0)-1) }));
 
   const handleInc = (id) =>
     setTopicQuestionCount((prev) => ({ ...prev, [id]: (prev[id] || 0) + 1 }));
@@ -148,61 +144,32 @@ const VariantConstructor = () => {
           </div>
 
           <div className="brief-label">Краткий ответ</div>
-          <div className="constructor-body">
-            <ul>
-              {shortQTopics.map(({ id, name }) => (
-                <li className="li-constructor" key={id}>
-                  <div className="counter">
-                    <button type="button" onClick={() => handleDec(id)}>
-                      −
-                    </button>
-                    <input
-                      className="counter-input"
-                      type="tel"
-                      value={topicQuestionCount[id] || 0}
-                      onChange={(e) => handleChange(id, e)}
-                    />
-                    <button type="button" onClick={() => handleInc(id)}>
-                      ＋
-                    </button>
-                  </div>
-                  <div className="constructor-topicDescr">{name}</div>
-                </li>
-              ))}
-            </ul>
-          </div>
 
-          <div className="li-divider">Развернутый ответ</div>
           <div className="constructor-body">
             <ul>
-              {longQTopics.map(({ id, name }) => (
+              {topics.map(({ id, name }) => (
                 <li className="li-constructor" key={id}>
                   <div className="counter">
-                    <button type="button" onClick={() => handleDec(id)}>
-                      −
-                    </button>
+                    <button type="button" onClick={() => handleDec(id)}>−</button>
                     <input
                       className="counter-input"
                       type="tel"
-                      value={topicQuestionCount[id] || 0}
-                      onChange={(e) => handleChange(id, e)}
+                      value={topicQuestionCount[id]||0}
+                      onChange={e => handleChange(id, e)}
                     />
-                    <button type="button" onClick={() => handleInc(id)}>
-                      ＋
-                    </button>
+                    <button type="button" onClick={() => handleInc(id)}>＋</button>
                   </div>
                   <div className="constructor-topicDescr">{name}</div>
                 </li>
               ))}
+              <div className="li-divider">Развернутый ответ</div>
             </ul>
           </div>
         </div>
 
         <div className="constructor-buttons">
           <div className="button-frame">
-            <button className="submit" type="submit">
-              Составить вариант
-            </button>
+            <button className="submit" type="submit">Составить вариант</button>
             <div className="answer-options">
               <label className="checkbox-label">
                 <input type="checkbox" onChange={handleShortToggle} />
@@ -213,6 +180,8 @@ const VariantConstructor = () => {
                 Развернутый ответ
               </label>
             </div>
+            <span className="corner-bl" />
+            <span className="corner-br" />
           </div>
         </div>
       </div>
