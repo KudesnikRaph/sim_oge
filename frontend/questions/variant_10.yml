@@ -1,0 +1,70 @@
+tests:
+  - id: 1
+    description: Проверка хронологического порядка событий XIX века (вопрос 1)
+    input:
+      question_id: 1
+      user_answer: "4132"
+    expected:
+      is_correct: true
+    logic:
+      - сравнить ответ пользователя с правильным "4132"
+
+  - id: 2
+    description: Проверка определения термина «аракчеевщина» (вопрос 2)
+    input:
+      question_id: 2
+      user_answer: "аракчеевщина"
+    expected:
+      is_correct: true
+    logic:
+      - сравнить ответ как строку после trim() и toLowerCase()
+
+  - id: 3
+    description: Проверка городов, захваченных в 1237−1238 гг. (вопрос 3)
+    input:
+      question_id: 3
+      user_answer: "12"
+    expected:
+      is_correct: true
+    logic:
+      - сравнить строку
+
+  - id: 4
+    description: Проверка города, не разоренного монголами в XIII в. (вопрос 4)
+    input:
+      question_id: 4
+      user_answer: "1"
+    expected:
+      is_correct: true
+    logic:
+      - сравнить строку
+
+  - id: 5
+    description: Проверка времени появления светского мероприятия (вопрос 5)
+    input:
+      question_id: 5
+      user_answer: "2"
+    expected:
+      is_correct: true
+    logic:
+      - сравнить строку
+
+  - id: 6
+    description: Проверка пропущенного слова на схеме (вопрос 6)
+    input:
+      question_id: 6
+      user_answer: "Народники"
+    expected:
+      is_correct: true
+    logic:
+      - сравнить строку
+
+  - id: 7
+    description: Проверка причины поражения России в Ливонской войне (вопрос 21)
+    input:
+      question_id: 21
+      user_answer: "опричная политика Иван Грозного"
+    expected:
+      is_correct: true
+    logic:
+      - сравнить ответ строкой после trim() и toLowerCase()

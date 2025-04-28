@@ -1,0 +1,72 @@
+tests:
+  - id: 1
+    description: Проверка хронологического порядка событий (вопрос 1)
+    input:
+      question_id: 1
+      user_answer: "3142"  # пользовательский ответ
+    expected:
+      is_correct: true
+    logic:
+      - сравнить ответ пользователя с правильным "3142" после trim() и toLowerCase()
+      - ответ считается правильным, если строки совпадают
+
+  - id: 2
+    description: Проверка определения термина «флеши» (вопрос 2)
+    input:
+      question_id: 2
+      user_answer: "флеши"
+    expected:
+      is_correct: true
+    logic:
+      - сравнить ответ как строку после trim() и toLowerCase()
+
+  - id: 3
+    description: Проверка городов, не разоренных монголами (вопрос 3)
+    input:
+      question_id: 3
+      user_answer: "34"
+    expected:
+      is_correct: true
+    logic:
+      - сравнить строку ответов
+
+  - id: 4
+    description: Проверка города на схеме из отрывка (вопрос 4)
+    input:
+      question_id: 4
+      user_answer: "Астрахань"
+    expected:
+      is_correct: true
+    logic:
+      - сравнить строку после trim() и toLowerCase()
+
+  - id: 5
+    description: Проверка пропущенного имени на схеме (вопрос 5)
+    input:
+      question_id: 5
+      user_answer: "Изяслав"
+    expected:
+      is_correct: true
+    logic:
+      - сравнить строку
+
+  - id: 6
+    description: Проверка события, связанного с царем Леонидом (вопрос 6)
+    input:
+      question_id: 6
+      user_answer: "1"
+    expected:
+      is_correct: true
+    logic:
+      - проверить номер как строку и сравнить с правильным ответом
+
+  - id: 7
+    description: Проверка причины Северной войны (вопрос 21)
+    input:
+      question_id: 21
+      user_answer: "Великое посольство"
+    expected:
+      is_correct: true
+    logic:
+      - сравнить ответ строкой после trim() и toLowerCase()
+      - в объяснении ответ должен содержать связь с событиями Северной войны
