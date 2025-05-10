@@ -1,0 +1,70 @@
+tests:
+  - id: 1
+    description: Проверка хронологического порядка событий (вопрос 1)
+    input:
+      question_id: 1
+      user_answer: "3412"  # пользовательский ответ
+    expected:
+      is_correct: true
+    logic:
+      - сравнить ответ пользователя с правильным ответом "3412"
+
+  - id: 2
+    description: Проверка определения термина «поляне» (вопрос 2)
+    input:
+      question_id: 2
+      user_answer: "поляне"
+    expected:
+      is_correct: true
+    logic:
+      - сравнить ответ как строку после trim() и toLowerCase()
+
+  - id: 3
+    description: Проверка категорий зависимого населения (вопрос 3)
+    input:
+      question_id: 3
+      user_answer: "35"
+    expected:
+      is_correct: true
+    logic:
+      - сравнить строку с ответом "35"
+
+  - id: 4
+    description: Проверка термина, «выпадающего» из ряда (вопрос 4)
+    input:
+      question_id: 4
+      user_answer: "5"
+    expected:
+      is_correct: true
+    logic:
+      - сравнить строку с ответом "5"
+
+  - id: 5
+    description: Проверка пропущенного в рассказе города (вопрос 5)
+    input:
+      question_id: 5
+      user_answer: "5"  # номер, соответствующий Беловежью
+    expected:
+      is_correct: true
+    logic:
+      - сравнить строку с правильным номером "5"
+
+  - id: 6
+    description: Проверка фамилии, пропущенной на схеме (вопрос 6)
+    input:
+      question_id: 6
+      user_answer: "Бакунин"
+    expected:
+      is_correct: true
+    logic:
+      - сравнить ответ как строку
+
+  - id: 7
+    description: Проверка причины русско-польской войны 1654−1667 гг. (вопрос 21)
+    input:
+      question_id: 21
+      user_answer: "восстание Богдана Хмельницкого"
+    expected:
+      is_correct: true
+    logic:
+      - сравнить строку ответа после trim() и toLowerCase()

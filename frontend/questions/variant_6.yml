@@ -1,0 +1,71 @@
+tests:
+  - id: 1
+    description: Проверка хронологического порядка событий (вопрос 1)
+    input:
+      question_id: 1
+      user_answer: "3241"  # пользовательский ответ
+    expected:
+      is_correct: true
+    logic:
+      - сравнить ответ пользователя с правильным ответом '3241'
+      - ответ считается правильным, если строки совпадают после trim() и lower()
+
+  - id: 2
+    description: Проверка определения термина «винная монополия» (вопрос 2)
+    input:
+      question_id: 2
+      user_answer: "винная монополия"
+    expected:
+      is_correct: true
+    logic:
+      - сравнить ответ пользователя с правильным
+
+  - id: 3
+    description: Проверка памятников архитектуры эпохи Иван III (вопрос 3)
+    input:
+      question_id: 3
+      user_answer: "45"
+    expected:
+      is_correct: true
+    logic:
+      - сравнить ответ как строку
+
+  - id: 4
+    description: Проверка имени князя из летописи (вопрос 4)
+    input:
+      question_id: 4
+      user_answer: "Святослав Игоревич"
+    expected:
+      is_correct: true
+    logic:
+      - сравнить строку после trim() и lower()
+
+  - id: 5
+    description: Проверка страны, пропущенной на схеме (вопрос 5)
+    input:
+      question_id: 5
+      user_answer: "Германия"
+    expected:
+      is_correct: true
+    logic:
+      - проверка совпадения строки
+
+  - id: 6
+    description: Проверка события, связанного с битвой при Плесси (вопрос 6)
+    input:
+      question_id: 6
+      user_answer: "4"
+    expected:
+      is_correct: true
+    logic:
+      - сравнить как строку с номером ответа
+
+  - id: 7
+    description: Проверка причины начала Великих реформ (вопрос 21)
+    input:
+      question_id: 21
+      user_answer: "неудачное завершение Русско-японской войны"
+    expected:
+      is_correct: true
+    logic:
+      - сравнить строку ответа после trim() и lower()
