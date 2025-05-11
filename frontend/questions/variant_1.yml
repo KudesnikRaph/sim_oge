@@ -1,0 +1,156 @@
+# test_cases_variant_1.yml
+version: 1.0
+variant_id: 1
+tests:
+
+  # Тест 1: Проверка структуры варианта
+  - name: "Проверка структуры варианта"
+    steps:
+      - check: "Наличие обязательных полей"
+        fields:
+          - name: "id"
+            type: "number"
+            value: 1
+          - name: "name"
+            type: "string"
+            pattern: "^Вариант 1$"
+          - name: "questions"
+            type: "array"
+            min_length: 7
+            max_length: 8
+
+  # Тест 2: Вопрос 1 - Хронологическая последовательность
+  - name: "Вопрос 1 - Хронология событий"
+    question_id: 1
+    steps:
+      - check: "Формат вопроса"
+        text_contains: "Расположите в хронологическом порядке"
+      - check: "Количество элементов"
+        body_items: 4
+      - check: "Формат правильного ответа"
+        answer:
+          type: "string"
+          pattern: "^\\d{4}$"
+          value: "1423"
+      - check: "Историческая достоверность последовательности"
+        correct_order:
+          - "введение опричнины" (1565)
+          - "созыв первого Земского собора" (1549)
+          - "учреждение патриаршества" (1589)
+          - "теория «Москва — третий Рим»" (XVI век)
+
+  # Тест 3: Вопрос 2 - Терминологический вопрос
+  - name: "Вопрос 2 - Определение термина"
+    question_id: 2
+    steps:
+      - check: "Формат вопроса"
+        text_contains: "Запишите термин"
+      - check: "Правильный ответ"
+        answer:
+          value: "министерства"
+          synonyms: ["министерство", "государственные министерства"]
+      - check: "Описание термина"
+        body_contains: "органы центрального управления"
+        body_contains: "XIX в."
+
+  # Тест 4: Вопрос 3 - Множественный выбор
+  - name: "Вопрос 3 - Города при нашествии Батыя"
+    question_id: 3
+    steps:
+      - check: "Формат вопроса"
+        text_contains: "Какие города не были разорены"
+        text_contains: "1237−1242"
+      - check: "Количество вариантов"
+        options: 5
+      - check: "Правильный ответ"
+        answer:
+          type: "string"
+          length: 2
+          valid_options: ["34", "43"]
+      - check: "Историческая достоверность"
+        correct_options:
+          - "Новгород"
+          - "Псков"
+
+  # Тест 5: Вопрос 6 - Вопрос с изображением
+  - name: "Вопрос 6 - Анализ изображения"
+    question_id: 6
+    steps:
+      - check: "Наличие изображения"
+        image: "/1.png"
+        required: true
+      - check: "Формат вопроса"
+        text_contains: "Рассмотрите изображение"
+        text_contains: "участником событий"
+      - check: "Варианты ответа"
+        options_count: 5
+        options_type: "city"
+
+  # Тест 6: Вопрос 7 - Работа со схемой
+  - name: "Вопрос 7 - Заполнение схемы"
+    question_id: 7
+    steps:
+      - check: "Наличие изображения"
+        image: "/2.png"
+        required: true
+      - check: "Формат вопроса"
+        text_contains: "Запишите название"
+        text_contains: "пропущенное на схеме"
+
+  # Тест 7: Вопрос 18 - Развернутый ответ
+  - name: "Вопрос 18 - Анализ текста"
+    question_id: 18
+    steps:
+      - check: "Тип вопроса"
+        answer_type: "long"
+        correct_answer: null
+      - check: "Формат вопроса"
+        text_contains: "Прочитайте фрагмент"
+        text_contains: "Назовите императора"
+      - check: "Исторический контекст"
+        body_contains: "французской революции"
+        body_contains: "Суворова в Италии"
+        body_contains: "граф Пален"
+
+validation_rules:
+  - rule: "Уникальность ID вопросов"
+    check: "variants[0].questions.*.id"
+    condition: "unique"
+
+  - rule: "Соответствие типов ответов"
+    mapping:
+      - question_type: "short"
+        answer_types: ["string"]
+      - question_type: "long"
+        answer_types: ["null"]
+
+  - rule: "Проверка изображений"
+    check: "file_exists"
+    paths:
+      - "/1.png"
+      - "/2.png"
+
+historical_checks:
+  - question_id: 1
+    events:
+      - name: "введение опричнины"
+        year: 1565
+      - name: "созыв первого Земского собора"
+        year: 1549
+      - name: "учреждение патриаршества"
+        year: 1589
+      - name: "теория «Москва — третий Рим»"
+        period: "XVI век"
+
+  - question_id: 3
+    cities:
+      - name: "Рязань"
+        sacked: true
+      - name: "Владимир"
+        sacked: true
+      - name: "Новгород"
+        sacked: false
+      - name: "Псков"
+        sacked: false
+      - name: "Киев"
+        sacked: true

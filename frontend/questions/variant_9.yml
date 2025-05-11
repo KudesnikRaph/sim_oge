@@ -1,0 +1,70 @@
+tests:
+  - id: 1
+    description: Проверка хронологического порядка произведений (вопрос 1)
+    input:
+      question_id: 1
+      user_answer: "3124"
+    expected:
+      is_correct: true
+    logic:
+      - сравнить ответ пользователя с правильным "3124"
+
+  - id: 2
+    description: Проверка определения термина «интервенция» (вопрос 2)
+    input:
+      question_id: 2
+      user_answer: "интервенция"
+    expected:
+      is_correct: true
+    logic:
+      - сравнить ответ как строку после trim() и toLowerCase()
+
+  - id: 3
+    description: Проверка военачальников в Русско-турецкой войне 1877−1878 гг. (вопрос 3)
+    input:
+      question_id: 3
+      user_answer: "35"
+    expected:
+      is_correct: true
+    logic:
+      - сравнить строку с ответом "35"
+
+  - id: 4
+    description: Проверка группы лиц, не входящей в ряды (в вопросе 4)
+    input:
+      question_id: 4
+      user_answer: "2"
+    expected:
+      is_correct: true
+    logic:
+      - сравнить строку с ответом "2"
+
+  - id: 5
+    description: Проверка года, связанного с изображением медали (вопрос 5)
+    input:
+      question_id: 5
+      user_answer: "3"
+    expected:
+      is_correct: true
+    logic:
+      - сравнить строку с номером "3"
+
+  - id: 6
+    description: Проверка пропущенного на схеме названия мира (вопрос 6)
+    input:
+      question_id: 6
+      user_answer: "Столбовский мир"
+    expected:
+      is_correct: true
+    logic:
+      - сравнить строку с правильным ответом
+
+  - id: 7
+    description: Проверка причины восстания Разина (вопрос 21)
+    input:
+      question_id: 21
+      user_answer: "отмена местничества"
+    expected:
+      is_correct: true
+    logic:
+      - сравнить строку после trim() и toLowerCase()
