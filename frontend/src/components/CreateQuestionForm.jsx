@@ -1,6 +1,6 @@
+import React from 'react'; // Теперь JSX работает в тестах
 import { useState, useEffect } from "react";
 import "./CreateQuestionForm.css";
-
 import { convertKeysToSnakeCase } from "../utils/stringUtils";
 
 function CreateQuestionForm() {
@@ -81,8 +81,9 @@ function CreateQuestionForm() {
         onSubmit={handleSubmit}
         encType="multipart/form-data"
       >
-        <label className="cq-label">Текст вопроса:</label>
+        <label className="cq-label" htmlFor="text">Текст вопроса:</label>
         <textarea
+          id="text"
           className="cq-input"
           name="text"
           value={formData.text}
@@ -90,16 +91,18 @@ function CreateQuestionForm() {
           required
         />
 
-        <label className="cq-label">Содержание:</label>
+        <label className="cq-label" htmlFor="body">Содержание:</label>
         <textarea
+          id="body"
           className="cq-input"
           name="body"
           value={formData.body}
           onChange={handleChange}
         />
 
-        <label className="cq-label">Загрузить изображение:</label>
+        <label className="cq-label" htmlFor="image">Загрузить изображение:</label>
         <input
+          id="image"
           className="cq-input"
           type="file"
           name="image"
@@ -107,8 +110,9 @@ function CreateQuestionForm() {
           onChange={handleChange}
         />
 
-        <label className="cq-label">Правильный ответ:</label>
+        <label className="cq-label" htmlFor="correctAnswer">Правильный ответ:</label>
         <input
+          id="correctAnswer"
           className="cq-input"
           name="correctAnswer"
           value={formData.correctAnswer}
@@ -116,8 +120,9 @@ function CreateQuestionForm() {
           required
         />
 
-        <label className="cq-label">Тип ответа:</label>
+        <label className="cq-label" htmlFor="answerType">Тип ответа:</label>
         <select
+          id="answerType"
           className="cq-select"
           name="answerType"
           value={formData.answerType}
@@ -127,8 +132,9 @@ function CreateQuestionForm() {
           <option value="long">Развернутый</option>
         </select>
 
-        <label className="cq-label">Тема:</label>
+        <label className="cq-label" htmlFor="topicId">Тема:</label>
         <select
+          id="topicId"
           className="cq-select"
           name="topicId"
           value={formData.topicId}

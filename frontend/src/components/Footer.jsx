@@ -1,3 +1,4 @@
+import React from 'react';
 import './Footer.css';
 import logoSrc from '../assets/logo.png';
 
@@ -26,7 +27,7 @@ const Footer = () => {
         <ul className="footer-list">
           <li><a href="https://uchitel.pro/история-россии-предмет" target="_blank" rel="noopener noreferrer">Учитель</a></li>
           <li><a href="https://www.universalinternetlibrary.ru/book/46892/ogl.shtml?ysclid=m9mus68489801928238/" target="_blank" rel="noopener noreferrer">Электронная библиотека</a></li>
-          <li><a href="https://www.rusempire.ru/istoriya-rossii-kratko.html/" target="_blank" rel="noopener noreferrer">История государства россиит</a></li>
+          <li><a href="https://www.rusempire.ru/istoriya-rossii-kratko.html/" target="_blank" rel="noopener noreferrer">История государства россии</a></li>
         </ul>
       </div>
     </footer>
